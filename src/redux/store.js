@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { todosReducer } from './reducer';
+import { todosReducer } from './todos/todosSlice';
 
 const store = configureStore({
   reducer: {

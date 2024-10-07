@@ -1,13 +1,30 @@
-import { Route, Routes } from 'react-router-dom';
-
 // import ErrorPage from 'pages/ErrorPage/ErrorPage';
-import Todos from './components/Todos/Todos';
+import { useDispatch } from 'react-redux';
+import AddTodosForm from './components/AddTodosForm/AddTodosForm';
+import { addTodo, removeTodo } from './redux/todos/todosSlice';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  const handleAddTodo = (formData) => {
+    const finalTodo = {
+      ...formData,
+      id: Math.random().toString(),
+    };
+    const action = addTodo(finalTodo);
+    dispatch(action);
+  };
+
+  const handleDeleteTodo = (todoId) => {
+    const action = removeTodo(todoId);
+    dispatch(action);
+  };
+
   return (
-    <Routes>
-      <Route path="*" element={<Todos />} />
-    </Routes>
+    <>
+      <AddTodosForm />;
+      
+    </>
   );
-}
+};
 export default App;
